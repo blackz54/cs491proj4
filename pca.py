@@ -21,10 +21,14 @@ def compute_covariance_matrix(Z):
 
 
 # Function to find the principal components of the covariance matrix.
+# Assumption here is that covariance matrix will always be square and that col index of eig[0] will
+#   be the eigenvalue for the same row index at eig[1]
 # return eig[0]: eigenvalues
 # return eig[1]: eigenvectors
 def find_pcs(COV):
     eig = np.linalg.eig(COV)
+    print(eig[0])
+    print(eig[1])
     return eig[0], eig[1]
 
 
