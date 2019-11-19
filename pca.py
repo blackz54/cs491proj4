@@ -27,8 +27,6 @@ def compute_covariance_matrix(Z):
 # return eig[1]: eigenvectors
 def find_pcs(COV):
     eig = np.linalg.eig(COV)
-    print(eig[0])
-    print(eig[1])
     return eig[0], eig[1]
 
 
