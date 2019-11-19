@@ -20,8 +20,12 @@ def compute_covariance_matrix(Z):
     return np.dot(zT, Z)
 
 
+# Function to find the principal components of the covariance matrix.
+# return eig[0]: eigenvalues
+# return eig[1]: eigenvectors
 def find_pcs(COV):
-    pass
+    eig = np.linalg.eig(COV)
+    return eig[0], eig[1]
 
 
 def project_data(Z, PCS, L, k, var):
