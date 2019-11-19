@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+# Function to compute the Z matrix required for PCA
 def compute_Z(X, centering=True, scaling=True):
     Z = []
     if centering:
@@ -13,6 +14,7 @@ def compute_Z(X, centering=True, scaling=True):
     return Z
 
 
+# Function which computes covariance matrix
 def compute_covariance_matrix(Z):
     zT = np.array(Z).transpose()
     return np.dot(zT, Z)
@@ -26,17 +28,21 @@ def project_data(Z, PCS, L, k, var):
     pass
 
 
+# Helper function to calculate the mean of a column of data
 def compute_mean(X):
     return np.mean(X)
 
 
+# Helper function to calculate the standard deviation of a column of data
 def compute_std_dev(X):
     return np.std(X)
 
 
+# Helper function to subtract the average of a column of data from each element in that column
 def subtract(X, avg):
     return np.subtract(X, avg)
 
 
+# Helper function to divide each element in a column of data by that columns standard deviation
 def divide(X, std):
     return np.divide(X, std)
