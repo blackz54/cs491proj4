@@ -12,8 +12,10 @@ def compute_Z(X, centering=True, scaling=True):
         Z = np.array([divide(Z[:, i], column_std[i]) for i in range(len(Z[0]))]).transpose()
     return Z
 
+
 def compute_covariance_matrix(Z):
-    pass
+    zT = np.array(Z).transpose()
+    return np.dot(zT, Z)
 
 
 def find_pcs(COV):
