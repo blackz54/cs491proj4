@@ -1,10 +1,9 @@
-#### PROJECT 4 - EYC
+#### PROJECT 4 PCA - EYC
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-X = np.array([1,1,2,2,2,3,3,3,4,4,5,5,5],[1,0,2,1,4,4,3,2,4,5,5,7,4]])
-X = X.T
+#X = np.array([[-1,-1],[-1,1],[1,-1],[1,1]])
 
 ## Take data matrix X and standardize given centering and scaling
 def compute_Z(X, centering=True, scaling=False):
@@ -38,7 +37,7 @@ def find_pcs(COV):
     L = L[idx]
     PCS = PCS[:,idx]
     
-    return(PCS, L)
+    return(L, PCS)
 
 
 
