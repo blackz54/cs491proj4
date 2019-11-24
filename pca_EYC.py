@@ -7,10 +7,9 @@ import matplotlib.pyplot as plt
 
 ## Take data matrix X and standardize given centering and scaling
 def compute_Z(X, centering=True, scaling=False):
-    Z = X
 
     if centering == True:
-        mean_mat = np.mean(Z,axis=0)
+        mean_mat = np.mean(X,axis=0)
         Z = X - mean_mat
         
     if scaling == True:
