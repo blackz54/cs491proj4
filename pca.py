@@ -11,6 +11,9 @@ def compute_Z(X, centering=True, scaling=True):
     if scaling:
         column_std = [compute_std_dev(X[:, i]) for i in range(len(X[0]))]
         Z = np.array([divide(Z[:, i], column_std[i]) for i in range(len(Z[0]))]).transpose()
+        
+    if centering==False and scaling==False:
+        Z = X
     return Z
 
 
@@ -26,12 +29,36 @@ def compute_covariance_matrix(Z):
 # return eig[0]: eigenvalues
 # return eig[1]: eigenvectors
 def find_pcs(COV):
-    eig = np.linalg.eig(COV)
-    return eig[0], eig[1]
+    L, PCS = np.linalg.eig(COV)
+    
+    idx = L.argsort()[::-1]
+    L = L[idx]
+    PCS = PCS[:,idx]
+    
+    return(L, PCS)
 
 
 def project_data(Z, PCS, L, k, var):
-    pass
+    eucld = np.linalg.norm(PCS, axis=0)
+    PCS_norm = PCS/eucld
+    
+    if k==0:
+        cuml = 0
+        for i in range(len(L)):
+            cuml += L[i]
+            k += 1
+            if (cuml/sum(L) >= var):
+                PCS_new = PCS_norm[:,:k]
+    
+    if var==0:
+        PCS_new = PCS_norm[:,:k]
+        
+    feat_vec = PCS_new.T
+    Z_adj = Z.T
+    
+    Z_star = np.dot(feat_vec, Z_adj)    
+    
+    return(Z_star)
 
 
 # Helper function to calculate the mean of a column of data
